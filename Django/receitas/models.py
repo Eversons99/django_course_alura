@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from datetime import datetime
 from pessoas.models import Pessoa
@@ -13,5 +14,8 @@ class Receita(models.Model):
     tempo_preparo = models.IntegerField()                                       # Declarando um campo onde estará contido dados inteiros (Números)
     rendimento = models.CharField(max_length=100)                               # Declarando um campo com uma cadeia de caracteres de tamanho maximo de 100
     categoria = models.CharField(max_length=100)                                # Declarando um campo com uma cadeia de caracteres de tamanho maximo de 100
-    data_receita = models.DateTimeField(default = datetime.now, blank = True)   # Declarando um campo com tipo data, valor padrão data atual, caso não pegue a data atual, o campo ficará em branco
-    
+    data_receita = models.DateTimeField(default=datetime.now, blank = True)     # Declarando um campo com tipo data, valor padrão data atual, caso não pegue a data atual, o campo ficará em branco
+    foto_receita = models.ImageField(upload_to='fotos/%d/%m/%Y/', blank=True)   # Declarando um campo com tipo image, a imagem estara no caminho informado no upload e o segundo parametro é para caso uma imagem não exista
+    publicada = models.BooleanField(default=False)                              # Declarando um campo com uma boolean, valor padrão False
+    def __str__(self):
+        return self.nome_receita

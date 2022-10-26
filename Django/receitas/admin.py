@@ -5,7 +5,7 @@ from .models import Receita
 
 # Criando um novo classe que ir autilizar um método já exitente (list_display) para rendeirzar o id e o nome da receita no Django Admin
 class ListandoReceitas(admin.ModelAdmin):
-    list_display = ('id', 'nome_receita', 'categoria', 'tempo_preparo')
+    list_display = ('id', 'nome_receita', 'categoria', 'tempo_preparo', 'publicada')
     # Definindo id e nome da receita como link
     list_display_links = ('id', 'nome_receita')
     # quando alguem digitar o nome de uma receita ela será buscada
@@ -13,7 +13,9 @@ class ListandoReceitas(admin.ModelAdmin):
     # Aplicando um filtro por categoria
     list_filter = ('categoria',)
     # Criando uma paginação, neste caso eu escolho o número de items que eu quero por página
-    list_per_page = 2
+    list_per_page = 4
+    # Criando uma lista de campos que podem ser editados
+    list_editable = ('publicada',)
 
 admin.site.register(Receita, ListandoReceitas)
 

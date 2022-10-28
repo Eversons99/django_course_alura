@@ -25,7 +25,7 @@ SECRET_KEY = 's4db0blg(av=l*y8v6%hnh29c&h56e3eb6r4n+4qvefiz-2+7y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -129,5 +129,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'alurareceita/static')
 ]
 
+# Média
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Mensagens
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning'
+
+}
